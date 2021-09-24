@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "./protocmd";
+
+message ReqHello {
+  string Value = 1;
+}
+
+message RetHello {
+  string Value = 1;
+}
+
+service Hello {
+  rpc Hello (ReqHello) returns (RetHello);
+}

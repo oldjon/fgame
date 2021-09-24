@@ -1,0 +1,16 @@
+{
+  "global": {
+    "loglevel": 0
+  },
+  "gatewayserver": {
+    "tcpport": "8101",
+    "pprofport": "18101",
+    "services": "",
+    "rediscluster": "127.0.0.1:6001|127.0.0.1:6002|127.0.0.1:6003",
+    "log": "/log/log_gatewayserver.log"
+  },
+  "sceneserver": {
+    "log": "/log/log_sceneserver.log",
+    "tcpport": "5001"
+  }
+}

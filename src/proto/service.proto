@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package fcmd;
+
+option go_package = "./fcmd";
+
+enum Service {
+  ServiceTypeNone   = 0;
+  Gateway           = 1;//网关
+  Lobby             = 2;//大厅
+  Team              = 3;//组队
+  Chat              = 4;//聊天
+  Push              = 5;//推送
+  Pay               = 6;//支付
+}

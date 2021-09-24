@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package fcmd;
+
+option go_package = "./fcmd";
+
+message ReqLogin{ //登录
+  string Account  = 1;
+  string Password = 2;
+}
+
+message RetLogin{
+  uint64 UserId = 1;
+}
+
+message ReqMove{
+  uint64 UserId = 1;
+  uint32 Power  = 2;//力度
+  uint32 Way    = 3;//方向
+}
+
+message ReqServiceOnline{}
+
+message RetServiceOnline{}
+
+message ReqServiceOffline{}
+
+message RetServiceOffline{}

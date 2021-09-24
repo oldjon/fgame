@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package fcmd;
+
+import "service.proto";
+
+option go_package = "./fcmd";
+
+message ReqServerRegist{
+  uint32 GWId = 1;
+}
+
+message RetServerRegist{
+  uint32 State = 1;
+}
+
+message ServiceNodeInfo{
+  int64   Id    = 1;
+  string  Addr  = 2;
+}
+
+message ServiceGroupInfo{
+            Service   Service  = 1;
+  repeated  ServiceNodeInfo Nodes   = 2;
+            uint32    LBType        = 3;
+}
+
+message ReqLoadServiceInfo{
+  Service SelfService = 1;//当前服务
+}
+
+message RetLoadlServiceInfo{
+  repeated ServiceGroupInfo ServiceGroup = 1;
+}

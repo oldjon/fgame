@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package fcmd;
+
+option go_package = "./fcmd";
+
+//--------------------玩家指令 start--------------------
+enum UCmd {
+  UCmdNone        = 0;
+  HeartBeat       = 1;//心跳
+  GatewayLogin    = 2;//登录
+  ServiceOnline   = 3;//上线
+  ServiceOffline  = 4;//下线
+  Move            = 20;//移动
+}
+//--------------------玩家指令 end--------------------
+
+//--------------------服务器指令 start--------------------
+enum SCmd {
+  SCmdNone      = 0;
+  ServerRegist  = 1;//服务器注册
+  Player        = 2;
+}
+//--------------------服务器指令 end--------------------
+
+message ReqGatewayLogin{
+  string  Key     = 1;
+  string  Version = 2;
+}
+
