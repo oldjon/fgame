@@ -66,7 +66,7 @@ func (this *ServiceTaskList) GetServiceTask(userid uint64) *ServiceTask {
 		index := atomic.AddUint64(&this.lb, 1)
 		return this.nodes[index%num]
 	default:
-		return this.nodes[userid%num-1]
+		return this.nodes[userid%num]
 	}
 }
 

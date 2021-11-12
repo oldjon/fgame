@@ -25,7 +25,7 @@ type Service int32
 const (
 	Service_ServiceTypeNone Service = 0
 	Service_Gateway         Service = 1 //网关
-	Service_Lobby           Service = 2 //用户
+	Service_Lobby           Service = 2 //大厅
 	Service_Team            Service = 3 //组队
 	Service_Chat            Service = 4 //聊天
 	Service_Push            Service = 5 //推送

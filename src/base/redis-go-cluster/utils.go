@@ -194,3 +194,15 @@ func (this *Cluster) SetObject(key string, obj interface{}) bool {
 	}
 	return true
 }
+
+func (this *Cluster) HSet(key, field, value interface{}) bool {
+	n, err := Int(this.Do("HSET", key, field, value))
+	if err != nil {
+		glog.ErrorDepth(1, "[Redis] HMSET操作失败 ", err)
+		return false
+	}
+	if n == 0 {
+		return false
+	}
+	return true
+}

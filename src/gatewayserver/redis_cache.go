@@ -4,7 +4,7 @@ import (
 	"oldjon.com/glog"
 )
 
-func (this *RedisMgr) LoadObject(key string, object interface{}) bool {
+func (this *RedisMgr) LoadToken(key string, object interface{}) bool {
 	cluster := this.GetCacheCluster()
 	if cluster == nil {
 		glog.Error("[Redis] 获取cluster失败 ")

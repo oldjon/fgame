@@ -19,11 +19,12 @@ type GatewayServer struct {
 
 var gatewayserver *GatewayServer
 
-func GateWayServer_GetMe() *GatewayServer {
+func GatewayServer_GetMe() *GatewayServer {
 	if gatewayserver == nil {
 		gatewayserver = &GatewayServer{
 			tcpserver: &server.TCPServer{},
 		}
+		gatewayserver.Derived = gatewayserver
 	}
 	return gatewayserver
 }
@@ -36,13 +37,24 @@ func (this *GatewayServer) Init() bool { //TODO
 		}()
 	}
 
-	if !RedisMgr_GetMe().Init() {
+	redisaddrs := map[string]string{
+		"cache": env.Get("global", "redis_cache"),
+		"lock":  env.Get("global", "redis_lock"),
+	}
+
+	if !RedisMgr_GetMe().Init(redisaddrs) {
 		glog.Error("[启动] 连接redis cluster失败 ")
 		return false
 	}
 
-	if ServiceMgr_GetMe().LoadServices() {
+	if !ServiceMgr_GetMe().LoadServices() {
 		glog.Error("[启动] 连接服务失败 ")
+		return false
+	}
+
+	if err := this.tcpserver.Bind(env.Get("gatewayserver", "tcpport")); err != nil {
+		glog.Error("[启动] 网关服务监听端口失败 ", err)
+		return false
 	}
 
 	return true
@@ -67,8 +79,9 @@ func (this *GatewayServer) GetServerId() uint64 {
 }
 
 func (this *GatewayServer) Final() bool {
+	UserTaskMgr_GetMe().CloseAll()
 	this.tcpserver.CLose()
-	//UserTaskMgr_GetMe().CloseAll()
+	RedisMgr_GetMe().Close()
 	return true
 }
 
@@ -96,5 +109,6 @@ func main() {
 		glog.SetLogFile(env.Get("gatewayserver", "log"))
 	}
 
-	GateWayServer_GetMe().Main()
+	defer glog.Flush()
+	GatewayServer_GetMe().Main()
 }

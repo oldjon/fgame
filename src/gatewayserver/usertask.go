@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"oldjon.com/com"
+	"oldjon.com/dbobj"
 	"oldjon.com/fcmd"
 	"oldjon.com/glog"
 	"oldjon.com/server"
@@ -28,7 +29,7 @@ type UserTask struct {
 	Account  string
 	AuthKey  string
 	AuthStep uint32
-	udata    *com.TokenData
+	udata    *db.TokenData
 	//aesdec     AesDecrypt //TODO
 	//aesenc     AesEncrypt //TODO
 	activeTime int64
@@ -79,8 +80,8 @@ func (this *UserTask) DoVerify(data []byte) bool {
 		this.SendErrorMsg(seqid, com.Err_Decode)
 		return false
 	}
-	token := &com.TokenData{}
-	if !RedisMgr_GetMe().LoadObject(req.Key, token) {
+	token := &db.TokenData{}
+	if !RedisMgr_GetMe().LoadToken(req.Key, token) {
 		glog.Error("[登录] 认证失败 ", this.Conn.RemoteAddr(), ",", req.Key)
 		return false
 	}

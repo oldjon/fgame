@@ -1,11 +1,16 @@
 package com
 
 const (
-	Err_OK      = 0
-	Err_Decode  = 1
-	Err_Param   = 2
-	Err_DB      = 3
-	Err_ReLogin = 10
+	Err_OK            = 0
+	Err_Decode        = 1
+	Err_Param         = 2
+	Err_DB            = 3
+	Err_Service       = 4
+	Err_Cmd           = 5
+	Err_AccOrPassword = 101 //账号或密码错误
+	Err_Captcha       = 102 //验证码错误
+	Err_Tel           = 103 //手机号错误
+	Err_ReLogin       = 110
 )
 
 func EncodeError(seqId uint32, errorcode uint32, desc []byte) []byte {

@@ -5,12 +5,27 @@ package fcmd;
 option go_package = "./fcmd";
 
 message ReqLogin{ //登录
-  string Account  = 1;
-  string Password = 2;
+  string Account    = 1;//账号
+  string Password   = 2;//密码
+  string Device     = 3;//设备号
+  string Version    = 4;//版本
+  string ResVersion = 5;//底包版本
+  string APKVersion = 6;//apk版本
+  string PhoneType  = 7;//手机型号
+  uint32 Net        = 8;//网络
+  uint32 Platform   = 9;//平台 安卓1 苹果2
+  string SystemOS   = 10;//系统
+  string Channel    = 11;//渠道
+  string Tel        = 12;//电话
+  string Captcha    = 13;//验证码
 }
 
 message RetLogin{
-  uint64 UserId = 1;
+  uint64  UserId        = 1;
+  bool    IsBind        = 2;
+  string  Account       = 3;
+  string  GatewayAddr   = 4;
+  string  GatewayToken  = 5;
 }
 
 message ReqMove{

@@ -4,11 +4,11 @@ import (
 	"strings"
 	"sync"
 
-	pb "github.com/golang/protobuf/proto"
 	"oldjon.com/com"
 	"oldjon.com/env"
 	"oldjon.com/fcmd"
 	"oldjon.com/glog"
+	pb "oldjon.com/protobuf/proto"
 )
 
 type ServiceMgr struct {
@@ -128,6 +128,7 @@ func (this *ServiceMgr) LoadServices() bool {
 	//暂时从配置获取，后续由中心服分发 TODO
 	servicestr := env.Get("gatewayserver", "services")
 	if servicestr == "" {
+		glog.Error("[启动] 未配置服务 ", servicestr)
 		return true
 	}
 	for _, servicegroup := range strings.Split(servicestr, "|") {

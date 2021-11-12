@@ -8,9 +8,10 @@ option go_package = "./fcmd";
 enum UCmd {
   UCmdNone        = 0;
   HeartBeat       = 1;//心跳
-  GatewayLogin    = 2;//登录
-  ServiceOnline   = 3;//上线
-  ServiceOffline  = 4;//下线
+  Login           = 2;//登录
+  GatewayLogin    = 3;//登录
+  ServiceOnline   = 4;//上线
+  ServiceOffline  = 5;//下线
   Move            = 20;//移动
 }
 //--------------------玩家指令 end--------------------

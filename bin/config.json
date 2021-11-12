@@ -1,16 +1,25 @@
 {
   "global": {
-    "loglevel": 0
+    "loglevel": 0,
+    "redis_cache": "127.0.0.1:6001|127.0.0.1:6002|127.0.0.1:6003",
+    "redis_acc": "127.0.0.1:6101|127.0.0.1:6102|127.0.0.1:6103",
+    "redis_lock": "127.0.0.1:6201|127.0.0.1:6202|127.0.0.1:6203"
   },
   "gatewayserver": {
-    "tcpport": "8101",
-    "pprofport": "18101",
+    "tcpport": ":8101",
+    "pprofport": ":18101",
     "services": "",
-    "rediscluster": "127.0.0.1:6001|127.0.0.1:6002|127.0.0.1:6003",
     "log": "/log/log_gatewayserver.log"
   },
+  "loginserver": {
+    "httpport": ":8201",
+    "pprofport": ":18201",
+    "gatewayaddrs": "42.192.47.98:8101",
+    "gatewaylbtype": "1",
+    "log": "/log/log_loginserver.log"
+  },
   "sceneserver": {
-    "log": "/log/log_sceneserver.log",
-    "tcpport": "5001"
+    "tcpport": ":5001",
+    "log": "/log/log_sceneserver.log"
   }
 }
